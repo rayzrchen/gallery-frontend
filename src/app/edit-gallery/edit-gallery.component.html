@@ -1,0 +1,27 @@
+<div class="col-md-12">
+  <div class="card card-container bg-dark">
+    <h2>创建活动</h2>
+
+    <div class="alert alert-success" *ngIf="isSuccess">
+      创建成功
+    </div>
+
+    <form name="form" [formGroup]="form">
+      <div class="form-group">
+        <label>主题</label>
+        <input type="text" class="form-control" name="title" formControlName="title"/>
+      </div>
+      <div class="form-group">
+        <label>描述</label>
+        <input class="form-control" name="password" formControlName="description"/>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary btn-block" (click)="onSubmit()">
+          创建
+        </button>
+      </div>
+    </form>
+
+
+  </div>
+</div>
