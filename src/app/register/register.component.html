@@ -1,0 +1,64 @@
+<div class="col-md-12">
+  <div class="card card-container bg-dark">
+    <h2>云相册注册</h2>
+    <form
+      *ngIf="!isSuccessful"
+      name="form"
+      (ngSubmit)="f.form.valid && onSubmit()"
+      #f="ngForm"
+      novalidate
+    >
+      <div class="form-group">
+        <label>手机号</label>
+        <input
+          type="text"
+          class="form-control"
+          name="username"
+          [(ngModel)]="form.username"
+          required
+          minlength="11"
+          maxlength="11"
+          #username="ngModel"
+        />
+        <div class="alert-danger" *ngIf="username.errors && f.submitted">
+          <div *ngIf="username.errors.required">手机号 必填</div>
+          <div *ngIf="username.errors.minlength">
+            手机号 是 11 位
+          </div>
+          <div *ngIf="username.errors.maxlength">
+            手机号 是 11 位
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>密码</label>
+        <input
+          type="password"
+          class="form-control"
+          name="password"
+          [(ngModel)]="form.password"
+          required
+          minlength="6"
+          #password="ngModel"
+        />
+        <div class="alert-danger" *ngIf="password.errors && f.submitted">
+          <div *ngIf="password.errors.required">密码 必填</div>
+          <div *ngIf="password.errors.minlength">
+            密码至少6位
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary btn-block">注册</button>
+      </div>
+
+      <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+        注册 失败<br />{{ errorMessage }}
+      </div>
+    </form>
+
+    <div class="alert alert-success" *ngIf="isSuccessful">
+      注册 成功
+    </div>
+  </div>
+</div>
