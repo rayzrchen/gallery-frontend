@@ -1,1 +1,8 @@
-<p>upload-picture works!</p>
+<div class="form-group">
+  <label for="file">Choose File</label>
+  <input type="file"
+         id="file"
+         (change)="handleFileInput($event.target)">
+</div>
+
+<button class="button button-primary" (click)="uploadFileToActivity()">上传照片</button>

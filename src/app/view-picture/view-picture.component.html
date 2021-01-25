@@ -1,1 +1,18 @@
-<p>view-picture works!</p>
+<div *ngIf="currentGallery">
+
+  <h3 class="text-center">{{currentGallery.title}}</h3>
+  <a class="btn btn-primary" routerLink="/upload-picture/{{currentGallery.id}}">上传照片</a>
+
+  <div class="row row-cols-1 row-cols-md-2">
+    <div class="col mb-4" *ngFor="let item of pictures">
+      <div class="card bg-dark mb-2 mt-2" >
+        <img src="data:image/jpg;base64,{{item.pictureBinary}}"/>
+        <p>文件名：{{item.filename}}</p>
+        <p>文件大小：{{item.fileSize / 1000}} KB</p>
+        <p>上传时间：{{item.uploadTime | date: 'yyyy-MM-dd HH:mm:ss'}}</p>
+        <p><a routerLink="/edit-picture/{{currentGallery.id}}/{{item.id}}">更改备注</a></p>
+      </div>
+    </div>
+  </div>
+
+</div>

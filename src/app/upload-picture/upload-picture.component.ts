@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {PictureService} from '../_services/picture.service';
 
 @Component({
   selector: 'app-upload-picture',
@@ -7,9 +9,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UploadPictureComponent implements OnInit {
 
-  constructor() { }
+  fileToUpload?: File = null;
+  galleryId?: string;
 
-  ngOnInit(): void {
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private pictureService: PictureService,
+  ) {
   }
 
+  ngOnInit(): void {
+    this.galleryId = this.activatedRoute.snapshot.params['gallery-id'];
+  }
+
+  handleFileInput(eventTarget: EventTarget): void {
+    this.fileToUpload = (eventTarget as any).files.item(0);
+  }
+
+  uploadFileToActivity(): void {
+    this.pictureService.upload(this.galleryId, this.fileToUpload)
+      .subscribe(data => {
+        alert('upload successful');
+      }, error => {
+        console.error(error);
+      });
+  }
 }

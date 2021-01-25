@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-edit-picture',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditPictureComponent implements OnInit {
 
-  constructor() { }
+  galleryId?: string;
+  pictureId?: string;
+  constructor(
+    private activatedRoute: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
+    this.galleryId = this.activatedRoute.snapshot.params['gallery-id'];
+    this.pictureId = this.activatedRoute.snapshot.params['picture-id'];
   }
+
+
 
 }

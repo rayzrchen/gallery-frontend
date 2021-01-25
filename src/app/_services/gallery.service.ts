@@ -22,6 +22,10 @@ export class GalleryService {
     return this.http.get<Gallery[]>(this.url);
   }
 
+  getOne(galleryId: string): Observable<Gallery> {
+    return this.http.get<Gallery>(this.url + '/' + galleryId);
+  }
+
 
 }
 
